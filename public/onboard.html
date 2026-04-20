@@ -1,0 +1,487 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Dashboard | Book Digitization Platform</title>
+    <style>
+        :root {
+            --primary: #006400;
+            --primary-light: #e6f0e6;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --card-bg: #1e293b;
+                --text-main: #f1f5f9;
+                --text-muted: #94a3b8;
+                --border: #334155;
+                --primary-light: #064e3b;
+            }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 4rem;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+
+        /* Header & Progress */
+        header { margin-bottom: 2.5rem; }
+        .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        h1 { font-size: 1.75rem; font-weight: 800; color: var(--primary); }
+        .tier-badge { 
+            background: var(--primary-light); 
+            color: var(--primary); 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 9999px; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            text-transform: uppercase;
+        }
+
+        .progress-container { background: var(--border); height: 12px; border-radius: 6px; overflow: hidden; }
+        #progress-bar { 
+            height: 100%; 
+            width: 0%; 
+            background: var(--primary); 
+            transition: width 0.4s ease; 
+        }
+
+        /* Sections */
+        section { margin-bottom: 2.5rem; }
+        h2 { font-size: 1.25rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-critical h2 { color: var(--error); }
+        .section-important h2 { color: #f59e0b; }
+        .section-optional h2 { color: var(--text-muted); }
+
+        /* Cards */
+        .card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            margin-bottom: 1rem; 
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .card-header { 
+            padding: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 1rem; 
+            cursor: pointer;
+            user-select: none;
+        }
+        .card-header:hover { background: rgba(0,0,0,0.02); }
+
+        .checkbox-wrapper { display: flex; align-items: center; }
+        input[type="checkbox"] { 
+            width: 20px; 
+            height: 20px; 
+            accent-color: var(--primary); 
+            cursor: pointer; 
+        }
+
+        .item-info { flex-grow: 1; }
+        .item-name { font-weight: 600; display: block; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+        .status-dot.done { background: var(--success); }
+
+        /* Expandable Content */
+        .card-content { 
+            display: none; 
+            padding: 0 1rem 1.5rem 3rem; 
+            border-top: 1px solid var(--border);
+            background: rgba(0,0,0,0.01);
+        }
+        .card.expanded .card-content { display: block; }
+        .card.expanded .status-dot.done { background: var(--success); }
+
+        .instruction-text { font-size: 0.9rem; color: var(--text-muted); margin: 1rem 0; }
+        
+        /* Env Vars & Links */
+        .env-box { 
+            background: var(--bg); 
+            padding: 0.75rem; 
+            border-radius: 6px; 
+            font-family: monospace; 
+            font-size: 0.85rem; 
+            margin-bottom: 1rem;
+            position: relative;
+            border: 1px solid var(--border);
+            word-break: break-all;
+        }
+        .copy-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+        .vendor-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .vendor-links a { 
+            font-size: 0.85rem; 
+            color: var(--primary); 
+            text-decoration: none; 
+            font-weight: 500;
+        }
+        .vendor-links a:hover { text-decoration: underline; }
+
+        /* Verify Section */
+        .verify-section {
+            background: var(--card-bg);
+            border: 2px dashed var(--primary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .verify-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        #verify-results { margin-top: 1rem; font-size: 0.9rem; text-align: left; display: inline-block; }
+
+        /* Footer */
+        footer { 
+            text-align: center; 
+            margin-top: 4rem; 
+            padding: 2rem; 
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        footer a { color: var(--primary); text-decoration: none; margin: 0 0.5rem; }
+
+        @media (max-width: 600px) {
+            .card-content { padding: 1rem; }
+            .item-info { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="brand-row">
+            <h1>Book Digitization Platform</h1>
+            <span class="tier-badge">Enterprise</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.5rem;">
+            <span id="progress-text">0% Complete</span>
+            <span id="progress-count">0/0 Tasks</span>
+        </div>
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+            Deployment URL: <a href="https://your-app.vercel.app" style="color: var(--primary);">https://your-app.vercel.app</a>
+        </p>
+    </header>
+
+    <!-- CRITICAL SECTION -->
+    <section class="section-critical">
+        <h2>🔴 Critical Infrastructure</h2>
+        
+        <!-- Clerk -->
+        <div class="card" id="card-clerk">
+            <div class="card-header" onclick="toggleCard('card-clerk')">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="task-check" data-id="clerk" onchange="updateProgress()">
+                </div>
+                <div class="item-info">
+                    <span class="item-name">Authentication (Clerk)</span>
+                </div>
+                <div class="status-dot" id="dot-clerk"></div>
+            </div>
+            <div class="card-content">
+                <p class="instruction-text">Configure user authentication and session management via Clerk.</p>
+                <div class="env-box">
+                    <span id="env-clerk">NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY, NEXT_PUBLIC_CLERK_SIGN_IN_URL...</span>
+                    <button class="copy-btn" onclick="copyText('env-clerk')">Copy</button>
+                </div>
+                <div class="vendor-links">
+                    <a href="https://dashboard.clerk.com" target="_blank">→ Clerk Dashboard</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stripe -->
+        <div class="card" id="card-stripe">
+            <div class="card-header" onclick="toggleCard('card-stripe')">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="task-check" data-id="stripe" onchange="updateProgress()">
+                </div>
+                <div class="item-info">
+                    <span class="item-name">Payments (Stripe)</span>
+                </div>
+                <div class="status-dot" id="dot-stripe"></div>
+            </div>
+            <div class="card-content">
+                <p class="instruction-text">Set up billing plans and webhook endpoints for subscription lifecycle.</p>
+                <div class="env-box">
+                    <span id="env-stripe">NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET</span>
+                    <button class="copy-btn" onclick="copyText('env-stripe')">Copy</button>
+                </div>
+                <div class="vendor-links">
+                    <a href="https://dashboard.stripe.com" target="_blank">→ Stripe Dashboard</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Database -->
+        <div class="card" id="card-db">
+            <div class="card-header" onclick="toggleCard('card-db')">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="task-check" data-id="db" onchange="updateProgress()">
+                </div>
+                <div class="item-info">
+                    <span class="item-name">Database (PostgreSQL)</span>
+                </div>
+                <div class="status-dot" id="dot-db"></div>
+            </div>
+            <div class="card-content">
+                <p class="instruction-text">Provision a managed database instance and update connection string.</p>
+                <div class="env-box">
+                    <span id="env-db">DATABASE_URL</span>
+                    <button class="copy-btn" onclick="copyText('env-db')">Copy</button>
+                </div>
+                <div class="vendor-links">
+                    <a href="https://supabase.com" target="_blank">→ Supabase</a>
+                    <a href="https://neon.tech" target="_blank">→ Neon</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPORTANT SECTION -->
+    <section class="section-important">
+        <h2>🟠 Important Configuration</h2>
+
+        <!-- Domain -->
+        <div class="card" id="card-domain">
+            <div class="card-header" onclick="toggleCard('card-domain')">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="task-check" data-id="domain" onchange="updateProgress()">
+                </div>
+                <div class="item-info">
+                    <span class="item-name">Domain & App URL</span>
+                </div>
+                <div class="status-dot" id="dot-domain"></div>
+            </div>
+            <div class="card-content">
+                <p class="instruction-text">Set the production URL for OAuth callbacks and metadata.</p>
+                <div class="env-box">
+                    <span id="env-domain">NEXT_PUBLIC_APP_URL</span>
+                    <button class="copy-btn" onclick="copyText('env-domain')">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics -->
+        <div class="card" id="card-analytics">
+            <div class="card-header" onclick="toggleCard('card-analytics')">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="task-check" data-id="analytics" onchange="updateProgress()">
+                </div>
+                <div class="item-info">
+                    <span class="item-name">Observability & Analytics</span>
+                </div>
+                <div class="status-dot" id="dot-analytics"></div>
+            </div>
+            <div class="card-content">
+                <p class="instruction-text">Enable error tracking and user behavior monitoring.</p>
+                <div class="env-box">
+                    <span id="env-analytics">SENTRY_DSN, NEXT_PUBLIC_POSTHOG_KEY, NEXT_PUBLIC_POSTHOG_HOST</span>
+                    <button class="copy-btn" onclick="copyText('env-analytics')">Copy</button>
+                </div>
+                <div class="vendor-links">
+                    <a href="https://sentry.io" target="_blank">→ Sentry</a>
+                    <a href="https://posthog.com" target="_blank">→ PostHog</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTIONAL SECTION -->
+    <section class="section-optional">
+        <h2>⚪ Optional Enhancements</h2>
+        
+        <div class="card" id="card-seo">
+            <div class="card-header" onclick="toggleCard('card-seo')">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="task-check" data-id="seo" onchange="updateProgress()">
+                </div>
+                <div class="item-info">
+                    <span class="item-name">SEO & Social Metadata</span>
+                </div>
+                <div class="status-dot" id="dot-seo"></div>
+            </div>
+            <div class="card-content">
+                <p class="instruction-text">Configure OpenGraph images and meta tags for book sharing features.</p>
+            </div>
+        </div>
+
+        <div class="card" id="card-chatbot">
+            <div class="card-header" onclick="toggleCard('card-chatbot')">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="task-check" data-id="chatbot" onchange="updateProgress()">
+                </div>
+                <div class="item-info">
+                    <span class="item-name">AI Support Chatbot</span>
+                </div>
+                <div class="status-dot" id="dot-chatbot"></div>
+            </div>
+            <div class="card-content">
+                <p class="instruction-text">Integrate a customer support widget for enterprise users.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VERIFY SECTION -->
+    <section>
+        <div class="verify-section">
+            <h3>Environment Verification</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Run a local check to ensure all keys are present in your .env file.</p>
+            <button class="verify-btn" onclick="runVerification()">Run Check</button>
+            <div id="verify-results"></div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>
+        <a href="MANUAL-ACTIONS.md">Documentation</a> | 
+        <a href=".env.example">.env.example</a> | 
+        <span>© 2024 Book Digitization Platform</span>
+    </p>
+</footer>
+
+<script>
+    const STORAGE_KEY = "onboard_book-digitization-platform";
+
+    // Initialize
+    window.onload = () => {
+        loadProgress();
+    };
+
+    function toggleCard(cardId) {
+        const card = document.getElementById(cardId);
+        card.classList.toggle('expanded');
+    }
+
+    function copyText(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector(`#${elementId} + .copy-btn`);
+            const originalText = btn.innerText;
+            btn.innerText = "Copied!";
+            setTimeout(() => btn.innerText = originalText, 2000);
+        });
+    }
+
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('.task-check');
+        const total = checkboxes.length;
+        let checkedCount = 0;
+
+        const checkedIds = [];
+
+        checkboxes.forEach(cb => {
+            const id = cb.getAttribute('data-id');
+            const dot = document.getElementById(`dot-${id}`);
+            const card = document.getElementById(`card-${id}`);
+
+            if (cb.checked) {
+                checkedCount++;
+                dot.classList.add('done');
+                checkedIds.push(id);
+            } else {
+                dot.classList.remove('done');
+            }
+        });
+
+        // Save to localStorage
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedIds));
+
+        // Update UI
+        const percent = Math.round((checkedCount / total) * 100);
+        document.getElementById('progress-bar').style.width = percent + '%';
+        document.getElementById('progress-text').innerText = percent + '% Complete';
+        document.getElementById('progress-count').innerText = `${checkedCount}/${total} Tasks`;
+    }
+
+    function loadProgress() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const checkedIds = JSON.parse(saved);
+            const checkboxes = document.querySelectorAll('.task-check');
+            
+            checkboxes.forEach(cb => {
+                const id = cb.getAttribute('data-id');
+                if (checkedIds.includes(id)) {
+                    cb.checked = true;
+                }
+            });
+        }
+        updateProgress();
+    }
+
+    function runVerification() {
+        const results = document.getElementById('verify-results');
+        results.innerHTML = "<em>Checking environment...</em>";
+        
+        setTimeout(() => {
+            // Mock Verification Logic
+            const required = [
+                'CLERK_SECRET_KEY', 
+                'STRIPE_SECRET_KEY', 
+                'DATABASE_URL', 
+                'NEXT_PUBLIC_APP_URL'
+            ];
+            
+            let html = '<ul style="list-style: none; padding: 0;">';
+            required.forEach(key => {
+                const isFound = Math.random() > 0.3; // Simulate check
+                html += `<li style="margin-bottom: 0.5rem;">
+                    ${isFound ? '✅' : '❌'} ${key} 
+                    <span style="color: ${isFound ? 'var(--success)' : 'var(--error)'}; font-size: 0.7rem;">
+                        (${isFound ? 'Present' : 'Missing'})
+                    </span>
+                </li>`;
+            });
+            html += '</ul>';
+            results.innerHTML = html;
+        }, 800);
+    }
+</script>
+
+</body>
+</html>
+```

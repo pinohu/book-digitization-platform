@@ -1,0 +1,123 @@
+{
+  "info": {
+    "name": "Book Digitization Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"scholar@foundation.org\",\n  \"password\": \"secure_password_123\",\n  \"tenantId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"role\": \"scholar\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Sign In",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"scholar@foundation.org\",\n  \"password\": \"secure_password_123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/sign-in",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "sign-in"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Core",
+      "item": [
+        {
+          "name": "List Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/books?search=Summa&page=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "books"],
+              "query": [
+                { "key": "search", "value": "Summa" },
+                { "key": "page", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Book Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/books/3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "books", "3fa85f64-5717-4562-b3fc-2c963f66afa6"]
+            }
+          }
+        },
+        {
+          "name": "Get Book Pages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/books/3fa85f64-5717-4562-b3fc-2c963f66afa6/pages",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "books", "3fa85f64-5717-4562-b3fc-2c963f66afa6", "pages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI Search",
+      "item": [
+        {
+          "name": "RAG Semantic Search",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"What are the primary arguments regarding grace?\",\n  \"top_k\": 3\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/search/rag",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "search", "rag"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000", "type": "string" },
+    { "key": "token", "value": "your_jwt_here", "type": "string" },
+    { "key": "apiKey", "value": "CROP-ADMIN-EXAMPLE-KEY", "type": "string" }
+  ]
+}

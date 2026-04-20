@@ -1,0 +1,167 @@
+{
+  "Index": {
+    "meta_title": "Book Digitization Platform - AI Platform for Document Digitization",
+    "meta_description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The United States I'd like to help Criterion Digitize Th"
+  },
+  "Navbar": {
+    "sign_in": "Connexion",
+    "sign_up": "Commencer",
+    "product": "Produit",
+    "docs": "Documentation",
+    "blog": "Blog",
+    "community": "Support",
+    "company": "À propos"
+  },
+  "Hero": {
+    "follow_twitter": "Book Digitization Platform — AI Platform for Document Digitization",
+    "title": "The <important>Book Digitization Platform</important> — Criterion educational Foundation is in Nigeria And they publish physical Catholi.",
+    "description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The United States I'd like to help Criterion Digitize Th",
+    "primary_button": "Commencer",
+    "secondary_button": "En savoir plus"
+  },
+  "Sponsors": {
+    "title": "Propulsé par"
+  },
+  "Features": {
+    "section_subtitle": "Fonctionnalités",
+    "section_title": "Pourquoi choisir Book Digitization Platform",
+    "section_description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The Un",
+    "feature1_title": "Rapide et fiable",
+    "feature2_title": "Sécurisé",
+    "feature3_title": "Évolutif",
+    "feature4_title": "TypeScript",
+    "feature5_title": "Tableau de bord",
+    "feature6_title": "Accès API",
+    "feature_description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin ey"
+  },
+  "Pricing": {
+    "section_subtitle": "Tarifs",
+    "section_title": "Tarification simple et transparente",
+    "section_description": "Commencez gratuitement, évoluez selon vos besoins.",
+    "button_text": "Commencer"
+  },
+  "PricingPlan": {
+    "free_plan_name": "Gratuit",
+    "premium_plan_name": "Pro",
+    "enterprise_plan_name": "Entreprise",
+    "free_plan_description": "Pour les particuliers",
+    "premium_plan_description": "Pour les équipes en croissance",
+    "enterprise_plan_description": "Pour les grandes organisations",
+    "feature_team_member": "{number} membres",
+    "feature_website": "{number} projets",
+    "feature_storage": "{number} Go de stockage",
+    "feature_transfer": "{number} To de transfert",
+    "feature_email_support": "Support par e-mail",
+    "plan_interval_month": "mois",
+    "plan_interval_year": "an",
+    "next_renew_date": "Votre abonnement se renouvelle le {date}"
+  },
+  "FAQ": {
+    "question": "Que fait Book Digitization Platform ?",
+    "answer": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The United States I'd like to help Criterion Digitize Th"
+  },
+  "CTA": {
+    "title": "Prêt à commencer ?",
+    "description": "Commencez à utiliser Book Digitization Platform aujourd’hui. Aucune carte de crédit requise.",
+    "button_text": "Essai gratuit"
+  },
+  "Footer": {
+    "product": "Produit",
+    "docs": "Documentation",
+    "blog": "Blog",
+    "community": "Support",
+    "company": "À propos",
+    "terms_of_service": "Conditions d’utilisation",
+    "privacy_policy": "Politique de confidentialité",
+    "footer_text": "© {year} {name}. Tous droits réservés."
+  },
+  "ProtectFallback": {
+    "not_enough_permission": "Vous n’avez pas la permission d’effectuer cette action"
+  },
+  "SignIn": {
+    "meta_title": "Connexion",
+    "meta_description": "Connectez-vous à votre compte Book Digitization Platform."
+  },
+  "SignUp": {
+    "meta_title": "Inscription",
+    "meta_description": "Créez votre compte Book Digitization Platform."
+  },
+  "DashboardLayout": {
+    "home": "Accueil",
+    "todos": "Tâches",
+    "members": "Membres",
+    "billing": "Facturation",
+    "settings": "Paramètres"
+  },
+  "Dashboard": {
+    "meta_title": "Tableau de bord Book Digitization Platform",
+    "meta_description": "Gérez votre compte Book Digitization Platform."
+  },
+  "DashboardIndex": {
+    "title_bar": "Tableau de bord",
+    "title_bar_description": "Bienvenue sur Book Digitization Platform",
+    "message_state_title": "Premiers pas",
+    "message_state_description": "Configurez votre compte Book Digitization Platform pour commencer.",
+    "message_state_button": "Voir la documentation",
+    "message_state_alternative": "",
+    "max_message": ""
+  },
+  "UserProfile": {
+    "title_bar": "Profil utilisateur",
+    "title_bar_description": "Gérez votre profil"
+  },
+  "OrganizationProfile": {
+    "title_bar": "Organisation",
+    "title_bar_description": "Gérez votre organisation"
+  },
+  "Billing": {
+    "title_bar": "Facturation",
+    "title_bar_description": "Gérez la facturation et l’abonnement",
+    "current_section_title": "Forfait actuel",
+    "current_section_description": "Ajustez votre forfait",
+    "manage_subscription_button": "Gérer l’abonnement"
+  },
+  "BillingOptions": {
+    "current_plan": "Forfait actuel",
+    "upgrade_plan": "Commencer"
+  },
+  "CheckoutConfirmation": {
+    "title_bar": "Confirmation de paiement",
+    "message_state_title": "Paiement réussi",
+    "message_state_description": "Votre paiement a été traité. Merci !",
+    "message_state_button": "Aller à la facturation"
+  },
+  "DataTable": {
+    "no_results": "Aucun résultat."
+  },
+  "Todos": {
+    "title_bar": "Tâches",
+    "title_bar_description": "Gérez vos tâches",
+    "add_todo_button": "Nouvelle tâche"
+  },
+  "TodoTableColumns": {
+    "open_menu": "Ouvrir le menu",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "title_header": "Titre",
+    "message_header": "Description",
+    "created_at_header": "Créé le"
+  },
+  "AddTodo": {
+    "title_bar": "Ajouter une tâche",
+    "add_todo_section_title": "Créer une nouvelle tâche",
+    "add_todo_section_description": "Remplissez les détails ci-dessous"
+  },
+  "EditTodo": {
+    "title_bar": "Modifier la tâche",
+    "edit_todo_section_title": "Modifier la tâche",
+    "edit_todo_section_description": "Mettez à jour les détails ci-dessous"
+  },
+  "TodoForm": {
+    "title_label": "Titre",
+    "title_description": "Saisissez un titre.",
+    "message_title": "Description",
+    "message_description": "Saisissez une description.",
+    "submit_button": "Envoyer"
+  }
+}

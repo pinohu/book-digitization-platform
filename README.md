@@ -1,195 +1,92 @@
-# AI ∞ OS
+# Book Digitization Platform
 
-The Infinite Operating System for Intelligence, Infrastructure, and Adaptive Empire Creation
+> High-fidelity AI preservation for Catholic Classics and academic archives.
 
-## Overview
+**👉 New here? Start with [MANUAL-ACTIONS.md](./MANUAL-ACTIONS.md) for setup instructions.**
 
-AI ∞ OS is a cloud-based, multi-agent orchestration platform that empowers users to design, launch, scale, and evolve SaaS ventures autonomously across any industry, geography, or market. It combines cutting-edge large language models, agentic execution frameworks, and business operating logic into a single, continuously evolving interface.
+[![Deploy](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel)](https://book-digitization-platform.vercel.app)
+[![Built with Dynasty](https://img.shields.io/badge/Built%20with-Dynasty%20Launcher-C9A84C)](https://yourdeputy.com)
 
-## Project Structure
+---
 
+## The Problem
+Archivists at the Criterion Educational Foundation spend hundreds of man-hours manually transcribing physical Catholic Classics. Existing OCR tools fail on aged typography and lack the verbatim precision required for theological scholarship, leaving thousands of volumes inaccessible to global researchers.
+
+## The Solution
+A specialized AI pipeline that converts physical page images into high-fidelity, searchable digital archives. By combining S3-direct uploads with OpenAI's advanced OCR and `pgvector` hybrid search, the platform reduces digitization time from weeks to minutes while maintaining the strict accuracy needed for academic citations.
+
+## Architecture
 ```
-ai-os/
-├── frontend/           # Next.js frontend application
-├── backend/           # FastAPI backend service
-├── agents/           # AI agent implementations
-├── shared/           # Shared types and utilities
-└── infrastructure/   # Deployment and infrastructure configs
+Client (Next.js) → API Routes → Business Logic → Database (Neon Postgres + pgvector)
+        ↓                              ↓
+   NextAuth (Roles)             Stripe Payments ($5/book)
+        ↓                              ↓
+   S3 Presigned URLs ←────── OpenAI OCR Pipeline
 ```
+
+## Quick Start
+
+```bash
+# Clone and setup
+gh repo clone pinohu/book-digitization-platform
+cd book-digitization-platform
+cp .env.example .env.local
+# Fill in environment variables (see .env.example for descriptions)
+
+# Start backend
+docker-compose up -d
+
+# Start frontend
+npm install && npm run dev
+```
+
+**Or use an AI coding agent:**
+```bash
+gh repo clone pinohu/book-digitization-platform && cd book-digitization-platform && claude  # Claude Code
+gh repo clone pinohu/book-digitization-platform && cd book-digitization-platform && pi      # Pi Agent
+```
+
+## Key Documents
+| Document | Purpose |
+|---|---|
+| [SPEC.md](./SPEC.md) | Product requirements and feature spec |
+| [DESIGN.md](./DESIGN.md) | Visual design system and component specs |
+| [ROADMAP.md](./ROADMAP.md) | Development phases and timeline |
+| [BUSINESS-SYSTEM.md](./BUSINESS-SYSTEM.md) | Strategic business architecture |
+| [docs/API-CONTRACTS.md](./docs/API-CONTRACTS.md) | API endpoint specifications |
+| [docs/DATA-MODEL.md](./docs/DATA-MODEL.md) | Database schema documentation |
 
 ## Tech Stack
-
-### Frontend
-- Next.js 14
-- TypeScript
-- TailwindCSS
-- shadcn/ui
-- Clerk.dev (Authentication)
-
-### Backend
-- FastAPI
-- PostgreSQL (via Supabase)
-- Redis
-- Celery
-- LangChain
-- CrewAI
-
-### AI & Agents
-- OpenAI GPT-4
-- Pinecone (Vector Store)
-- LangGraph/CrewAI
-
-## Getting Started
-
-### Prerequisites
-- Node.js 18+
-- Python 3.11+
-- PostgreSQL
-- Redis
-
-### Installation
-
-1. Clone the repository
-2. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
-3. Install backend dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-5. Start the development servers:
-   ```bash
-   # Terminal 1 - Frontend
-   npm run dev
-   
-   # Terminal 2 - Backend
-   uvicorn backend.main:app --reload
-   ```
-
-## Development
-
-- Frontend runs on http://localhost:3000
-- Backend API runs on http://localhost:8000
-- API documentation available at http://localhost:8000/docs
-
-# AI ∞ OS – Open Source Modular AI Operating System
-
-## What is AI ∞ OS?
-
-AI ∞ OS is a multi-agent, MCP-aware AI operating system that enables persistent memory, automation, and monetization across vertical SaaS, directories, and marketplaces. It is designed for extensibility, security, and global scalability — using fully open-source tools and models.
-
-## Features
-
-- 🔁 Model Context Protocol (MCP) Server for persistent memory
-- 🤖 Modular agent system (CrewAI or LangGraph)
-- 🧠 Integration with open-source LLMs (via Ollama, vLLM)
-- ⚙️ Automated workflow routing with n8n + LangChain
-- 🔐 Secure, self-hosted stack using Keycloak, Vault, Redis
-- 📊 Observable and deployable via Docker and K3s
-
-## Quickstart
-
-2. Spin up MCP Server:
-   - Launch Redis and Weaviate (or Qdrant)
-   - Configure vector schema and topic subscriptions
-
-3. Launch your model runner:
-   - Start Ollama or vLLM
-   - Download and load a supported model (e.g., Mistral 7B)
-
-4. Deploy agents:
-   - Use LangGraph or CrewAI config files to initialize agents
-   - Connect agents to workflows via FastAPI or LangChain
-
-5. Secure & Deploy:
-   - Set up Keycloak for auth
-   - Use Docker Compose or K3s for deployment
-
-## License
-
-MIT License. All dependencies are open-source.
-
-## Author
-
-AI ∞ OS • Systemized Intelligence for Global Scale
-
-## Deployment with Coolify
-
-This project uses Coolify for deployment. Coolify is an open-source alternative to platforms like Vercel, providing automated deployments, monitoring, and scaling.
-
-## Setup Instructions
-
-1. **Install Coolify CLI**
-   ```bash
-   # On Linux/Mac:
-   curl -s https://get.coolify.io | bash
-   
-   # On Windows (PowerShell):
-   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://get.coolify.io/windows'))
-   ```
-
-2. **Configure Environment**
-   Add these environment variables to your system:
-   - `COOLIFY_TOKEN`: Your Coolify API token
-   - `COOLIFY_PROJECT_ID`: Your Coolify project ID
-   - `NEXT_PUBLIC_API_URL`: Your API URL
-   - `DOMAIN`: Your production domain
-   - `DATABASE_URL`: Your database connection string
-
-3. **Add GitHub Secrets**
-   Add the same variables as secrets to your GitHub repository for CI/CD:
-   - `COOLIFY_TOKEN`
-   - `COOLIFY_PROJECT_ID`
-   - `NEXT_PUBLIC_API_URL`
-   - `DOMAIN`
-   - `DATABASE_URL`
+- **Framework**: Next.js 14 (App Router), Node.js, Express
+- **Auth**: NextAuth.js (Role-based: Admin, Scholar, Professional, Guest)
+- **Database**: Neon Postgres (with `pgvector` for hybrid search)
+- **Payments**: Stripe (Transactional $5/book)
+- **AI/OCR**: OpenAI GPT-4o (Vision/OCR) & text-embedding-3-small
+- **Infrastructure**: AWS S3 (Image Storage), Vercel (Hosting)
+- **UI**: TailwindCSS, Merriweather (Serif), Open Sans (UI)
 
 ## Deployment
 
-### Development Environment
-
+### Vercel (Recommended)
 ```bash
-# Using Bash:
-./scripts/deploy.sh development
-
-# Using PowerShell:
-./scripts/deploy.ps1 development
+npx vercel --prod
 ```
+Or connect this GitHub repo in the [Vercel Dashboard](https://vercel.com/new) for automatic deploys on every push.
 
-### Production Environment
+### Environment Variables
+Add all variables from `.env.example` to your Vercel project:
+**Vercel Dashboard → Settings → Environment Variables**
 
-Production deployments are automated via GitHub Actions when pushing to the main branch. For manual deployment:
+### Post-Deploy Checklist
+1. Set env vars in Vercel (see `.env.example`)
+2. Configure AWS S3 Bucket CORS for the Vercel domain
+3. Set up Stripe webhooks pointing to `your-domain/api/webhooks/stripe`
+4. Run database migrations: `npx prisma db push`
+5. Verify: visit your domain and test the `/ingest` flow
 
-```bash
-# Using Bash:
-./scripts/deploy.sh production
+## Contributing
+See [AGENTS.md](./AGENTS.md) for coding conventions and [CLAUDE.md](./CLAUDE.md) for AI agent instructions.
 
-# Using PowerShell:
-./scripts/deploy.ps1 production
-```
+---
 
-## Configuration Files
-
-- `coolify.json`: Production configuration
-- `coolify.development.json`: Development configuration
-- `.env.development`: Development environment variables
-- `.env.production`: Production environment variables
-
-## Features
-
-- **Cross-Platform Support**: Deploy from Windows, Linux, or macOS
-- **Automated Deployments**: Push to main branch triggers automatic deployment
-- **Environment Management**: Separate development and production environments
-- **Auto Scaling**: Production environment scales based on CPU and memory usage
-- **Monitoring**: CPU, memory, and network metrics
-- **Backups**: Daily backups with 7-day retention
-- **SSL/HTTPS**: Automatic SSL certificate management
-- **Health Checks**: Regular health monitoring
-- **Logging**: Comprehensive application logs
-
-For more details, see [deployment documentation](docs/deployment.md).
+*Built by [Dynasty Empire](https://dynastyempire.com) · Generated by [Your Deputy](https://yourdeputy.com)*

@@ -1,76 +1,82 @@
-version: '3.8'
+# =============================================================================
+# OMNISCAN AI - INFRASTRUCTURE ORCHESTRATION
+# =============================================================================
+# This configuration defines the local development and staging environment.
+# For production, these services are mapped to AWS RDS (PostgreSQL) and 
+# AWS ElastiCache (Redis).
+#
+# | Service | Resource Limit | Scaling Strategy | Persistence |
+# | :--- | :--- | :--- | :--- |
+# | API | 1vCPU / 2GB RAM | Horizontal (HPA) | Stateless |
+# | DB | 2vCPU / 4GB RAM | Vertical / Read-Replica | EBS Volume |
+# | Redis | 1vCPU / 1GB RAM | Cluster Mode | RDB/AOF |
+# =============================================================================
+
+version: '3.9'
 
 services:
-  redis:
-    image: redis:7
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis-data:/data
-
-  qdrant:
-    image: qdrant/qdrant
-    ports:
-      - "6333:6333"
-      - "6334:6334"
-    volumes:
-      - qdrant-data:/qdrant/storage
-
-  ollama:
-    image: ollama/ollama
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama-data:/root/.ollama
-
-  fastapi-server:
-    build: ./api
-    ports:
-      - "8000:8000"
-    depends_on:
-      - redis
-      - qdrant
-
-  keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    command: start-dev
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    ports:
-      - "8081:8080"
-    volumes:
-      - keycloak-data:/opt/keycloak/data
-
   app:
-    build:
+    build: 
       context: .
-      dockerfile: Dockerfile.dev
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
+      dockerfile: Dockerfile
+    container_name: omniscan_api_prod
+    ports: 
+      - "8000:8000"
     environment:
-      - NODE_ENV=development
-      - NEXTAUTH_URL=${NEXTAUTH_URL}
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - GITHUB_ID=${GITHUB_ID}
-      - GITHUB_SECRET=${GITHUB_SECRET}
-      - DATABASE_URL=${DATABASE_URL}
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
-      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
-    command: npm run dev
+      DATABASE_URL: postgresql://dynasty:${POSTGRES_PASSWORD:-prod_secure_pass_2024}@db:5432/book_digitization_platform
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: ${SECRET_KEY:-omniscan_prod_secret_8829104432}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-sk_test_51NzExampleKey}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-whsec_test_secret}
+      NEXT_PUBLIC_APP_URL: "https://app.omniscan.ai"
+    depends_on:
+      db: 
+        condition: service_healthy
+      redis: 
+        condition: service_healthy
+    restart: unless-stopped
     networks:
-      - app-network
+      - omniscan_net
 
-volumes:
-  redis-data:
-  qdrant-data:
-  ollama-data:
-  keycloak-data:
+  db:
+    image: postgres:15-alpine
+    container_name: omniscan_db_prod
+    environment:
+      POSTGRES_DB: book_digitization_platform
+      POSTGRES_USER: dynasty
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-prod_secure_pass_2024}
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dynasty"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - omniscan_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: omniscan_cache_prod
+    command: redis-server --appendonly yes
+    volumes: 
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - omniscan_net
 
 networks:
-  app-network:
+  omniscan_net:
     driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

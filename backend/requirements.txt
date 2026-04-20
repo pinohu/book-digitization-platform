@@ -1,0 +1,34 @@
+# =============================================================================
+# OMNISCAN AI - DEPENDENCY GOVERNANCE REPORT
+# =============================================================================
+# The following dependencies have been selected to ensure high availability, 
+# strict type safety, and optimal throughput for the transactional $5/book model.
+#
+# | Library | Version | Strategic Role | Business Impact |
+# | :--- | :--- | :--- | :--- |
+# | FastAPI | 0.104.1 | High-performance ASGI framework | Reduced latency for OCR requests |
+# | SQLAlchemy | 2.0.23 | ORM for PostgreSQL | Data integrity for financial transactions |
+# | Psycopg2 | 2.9.9 | PostgreSQL Adapter | Stable connection to AWS RDS |
+# | Redis | 5.0.1 | Distributed Caching/Queue | Real-time job status tracking |
+# | SlowAPI | 0.1.9 | Rate Limiting | Prevention of API abuse and cost spikes |
+# | Stripe | 7.6.0 | Payment Gateway | Automated revenue collection ($5/book) |
+# | PyJWT | 2.8.0 | Token Auth | Secure, stateless user sessions |
+# | Passlib | 1.7.4 | Password Hashing | Compliance with security standards (bcrypt) |
+# | Loguru | 0.7.2 | Structured Logging | Rapid debugging in production clusters |
+# | Pydantic | 2.5.0 | Data Validation | Elimination of runtime type errors |
+# =============================================================================
+
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+sqlalchemy>=2.0.23
+psycopg2-binary>=2.9.9
+redis>=5.0.1
+slowapi>=0.1.9
+stripe>=7.6.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+loguru>=0.7.2
+python-dotenv>=1.0.0
+alembic>=1.12.1
+pydantic[email]>=2.5.0
+python-multipart>=0.0.6

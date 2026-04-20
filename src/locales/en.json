@@ -1,0 +1,167 @@
+{
+  "Index": {
+    "meta_title": "Book Digitization Platform - AI Platform for Document Digitization",
+    "meta_description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The United States I'd like to help Criterion Digitize Th"
+  },
+  "Navbar": {
+    "sign_in": "Sign In",
+    "sign_up": "Get Started",
+    "product": "Product",
+    "docs": "Docs",
+    "blog": "Blog",
+    "community": "Support",
+    "company": "About"
+  },
+  "Hero": {
+    "follow_twitter": "Book Digitization Platform — AI Platform for Document Digitization",
+    "title": "The <important>Book Digitization Platform</important> — Criterion educational Foundation is in Nigeria And they publish physical Catholi.",
+    "description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The United States I'd like to help Criterion Digitize Th",
+    "primary_button": "Get Started",
+    "secondary_button": "Learn More"
+  },
+  "Sponsors": {
+    "title": "Powered By"
+  },
+  "Features": {
+    "section_subtitle": "Features",
+    "section_title": "Why Choose Book Digitization Platform",
+    "section_description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The Un",
+    "feature1_title": "Fast & Reliable",
+    "feature2_title": "Secure",
+    "feature3_title": "Scalable",
+    "feature4_title": "TypeScript",
+    "feature5_title": "Dashboard",
+    "feature6_title": "API Access",
+    "feature_description": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin ey"
+  },
+  "Pricing": {
+    "section_subtitle": "Pricing",
+    "section_title": "Simple, Transparent Pricing",
+    "section_description": "Start free, scale as you grow.",
+    "button_text": "Get Started"
+  },
+  "PricingPlan": {
+    "free_plan_name": "Free",
+    "premium_plan_name": "Pro",
+    "enterprise_plan_name": "Enterprise",
+    "free_plan_description": "For individuals",
+    "premium_plan_description": "For growing teams",
+    "enterprise_plan_description": "For large organizations",
+    "feature_team_member": "{number} Team Members",
+    "feature_website": "{number} Projects",
+    "feature_storage": "{number} GB Storage",
+    "feature_transfer": "{number} TB Transfer",
+    "feature_email_support": "Email Support",
+    "plan_interval_month": "month",
+    "plan_interval_year": "year",
+    "next_renew_date": "Your subscription renews on {date}"
+  },
+  "FAQ": {
+    "question": "What does Book Digitization Platform do?",
+    "answer": "Criterion educational Foundation is in Nigeria And they publish physical Catholic Classics As the president of origin eyes Incorporated a 501c3 The United States I'd like to help Criterion Digitize Th"
+  },
+  "CTA": {
+    "title": "Ready to get started?",
+    "description": "Start using Book Digitization Platform today. No credit card required.",
+    "button_text": "Start Free Trial"
+  },
+  "Footer": {
+    "product": "Product",
+    "docs": "Docs",
+    "blog": "Blog",
+    "community": "Support",
+    "company": "About",
+    "terms_of_service": "Terms of Service",
+    "privacy_policy": "Privacy Policy",
+    "footer_text": "© {year} {name}. All rights reserved."
+  },
+  "ProtectFallback": {
+    "not_enough_permission": "You do not have permission to perform this action"
+  },
+  "SignIn": {
+    "meta_title": "Sign in",
+    "meta_description": "Sign in to your Book Digitization Platform account."
+  },
+  "SignUp": {
+    "meta_title": "Sign up",
+    "meta_description": "Create your Book Digitization Platform account."
+  },
+  "DashboardLayout": {
+    "home": "Home",
+    "todos": "Tasks",
+    "members": "Members",
+    "billing": "Billing",
+    "settings": "Settings"
+  },
+  "Dashboard": {
+    "meta_title": "Book Digitization Platform Dashboard",
+    "meta_description": "Manage your Book Digitization Platform account."
+  },
+  "DashboardIndex": {
+    "title_bar": "Dashboard",
+    "title_bar_description": "Welcome to Book Digitization Platform",
+    "message_state_title": "Get started",
+    "message_state_description": "Set up your Book Digitization Platform account to get started.",
+    "message_state_button": "View Docs",
+    "message_state_alternative": "",
+    "max_message": ""
+  },
+  "UserProfile": {
+    "title_bar": "User Profile",
+    "title_bar_description": "Manage your profile"
+  },
+  "OrganizationProfile": {
+    "title_bar": "Organization",
+    "title_bar_description": "Manage your organization"
+  },
+  "Billing": {
+    "title_bar": "Billing",
+    "title_bar_description": "Manage billing and subscription",
+    "current_section_title": "Current Plan",
+    "current_section_description": "Adjust your plan",
+    "manage_subscription_button": "Manage Subscription"
+  },
+  "BillingOptions": {
+    "current_plan": "Current Plan",
+    "upgrade_plan": "Get Started"
+  },
+  "CheckoutConfirmation": {
+    "title_bar": "Payment Confirmation",
+    "message_state_title": "Payment successful",
+    "message_state_description": "Your payment has been processed. Thank you!",
+    "message_state_button": "Go to Billing"
+  },
+  "DataTable": {
+    "no_results": "No results."
+  },
+  "Todos": {
+    "title_bar": "Tasks",
+    "title_bar_description": "Manage your tasks",
+    "add_todo_button": "New task"
+  },
+  "TodoTableColumns": {
+    "open_menu": "Open menu",
+    "edit": "Edit",
+    "delete": "Delete",
+    "title_header": "Title",
+    "message_header": "Description",
+    "created_at_header": "Created"
+  },
+  "AddTodo": {
+    "title_bar": "Add Task",
+    "add_todo_section_title": "Create a new task",
+    "add_todo_section_description": "Fill in the details below"
+  },
+  "EditTodo": {
+    "title_bar": "Edit Task",
+    "edit_todo_section_title": "Modify task",
+    "edit_todo_section_description": "Update the details below"
+  },
+  "TodoForm": {
+    "title_label": "Title",
+    "title_description": "Enter a title.",
+    "message_title": "Description",
+    "message_description": "Enter a description.",
+    "submit_button": "Submit"
+  }
+}

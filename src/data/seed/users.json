@@ -1,0 +1,82 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Julian Thorne",
+    "email": "j.thorne@criterion.example.com",
+    "role": "admin",
+    "avatar": "https://i.pravatar.cc/150?u=jthorne",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "planTier": "enterprise"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Elena Rodriguez",
+    "email": "elena.r@criterion.example.com",
+    "role": "manager",
+    "avatar": "https://i.pravatar.cc/150?u=erodriguez",
+    "createdAt": "2024-02-10T14:20:00Z",
+    "planTier": "pro"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Marcus Aurelius",
+    "email": "m.aurelius@example.com",
+    "role": "manager",
+    "avatar": "https://i.pravatar.cc/150?u=maurelius",
+    "createdAt": "2024-03-05T09:15:00Z",
+    "planTier": "pro"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Clara Oswald",
+    "email": "clara.o@example.com",
+    "role": "user",
+    "avatar": "https://i.pravatar.cc/150?u=coswald",
+    "createdAt": "2024-04-12T11:30:00Z",
+    "planTier": "free"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Thomas Aquinas",
+    "email": "t.aquinas@example.com",
+    "role": "user",
+    "avatar": "https://i.pravatar.cc/150?u=taquinas",
+    "createdAt": "2024-05-20T16:45:00Z",
+    "planTier": "free"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Benedict XVI",
+    "email": "b.xvi@example.com",
+    "role": "user",
+    "avatar": "https://i.pravatar.cc/150?u=bxvi",
+    "createdAt": "2024-06-01T08:00:00Z",
+    "planTier": "free"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Sienna Miller",
+    "email": "s.miller@example.com",
+    "role": "user",
+    "avatar": "https://i.pravatar.cc/150?u=smiller",
+    "createdAt": "2024-07-14T12:00:00Z",
+    "planTier": "pro"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+    "tenant_id": "t1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+    "name": "Arthur Pendragon",
+    "email": "a.pendragon@example.com",
+    "role": "user",
+    "avatar": "https://i.pravatar.cc/150?u=apendragon",
+    "createdAt": "2024-08-22T15:10:00Z",
+    "planTier": "free"
+  }
+]
