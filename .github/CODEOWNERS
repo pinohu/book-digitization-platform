@@ -1,0 +1,21 @@
+# These owners will be the default owners for everything in the repo
+* @pinohu
+
+# Frontend code owners
+/app/ @pinohu
+/components/ @pinohu
+/styles/ @pinohu
+
+# Backend code owners
+/backend/ @pinohu
+/lib/ @pinohu
+
+# Infrastructure and deployment
+/.github/ @pinohu
+/scripts/ @pinohu
+*.yml @pinohu
+*.yaml @pinohu
+
+# Documentation
+/docs/ @pinohu
+*.md @pinohu 

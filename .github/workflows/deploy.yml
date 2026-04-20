@@ -1,0 +1,41 @@
+name: Deploy with Coolify
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  COOLIFY_HOST: ${{ secrets.COOLIFY_HOST }}
+  COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+  COOLIFY_PROJECT_ID: ${{ secrets.COOLIFY_PROJECT_ID }}
+  NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+  DOMAIN: ${{ secrets.DOMAIN }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
+      - name: Deploy to Production
+        shell: pwsh
+        env:
+          COOLIFY_HOST: ${{ secrets.COOLIFY_HOST }}
+        run: ./scripts/deploy.ps1 production 

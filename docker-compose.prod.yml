@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    image: ai-os:latest
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/', res => res.statusCode === 200 ? process.exit(0) : process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '3'
+          memory: 3G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    networks:
+      - ai-os-net
+    labels:
+      - "coolify.managed=true"
+      - "coolify.healthcheck.path=/"
+      - "coolify.healthcheck.interval=30s"
+      - "coolify.healthcheck.timeout=5s"
+      - "coolify.healthcheck.retries=3"
+      - "coolify.autoscale=true"
+      - "coolify.autoscale.min=1"
+      - "coolify.autoscale.max=3"
+      - "coolify.autoscale.cpu.target=70"
+      - "coolify.autoscale.memory.target=70"
+      - "coolify.domain=${DOMAIN}"
+      - "coolify.ssl=true"
+
+networks:
+  ai-os-net:
+    driver: bridge 

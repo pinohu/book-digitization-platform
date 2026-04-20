@@ -1,0 +1,33 @@
+agents:
+  strategy-agent:
+    goals:
+      - optimize_conversion
+      - map_growth_trajectory
+    tools:
+      - langchain
+      - vector_db
+    memory_schema:
+      vector_store: qdrant
+      embedding_model: sentence-transformers/all-MiniLM-L6-v2
+
+  support-agent:
+    goals:
+      - resolve_faq
+      - triage_issues
+    tools:
+      - fastapi
+      - redis
+    memory_schema:
+      chat_history: redis
+      escalation_tags: ["billing", "technical"]
+
+  content-agent:
+    goals:
+      - generate_seo_pages
+      - maintain_brand_tone
+    tools:
+      - flotiq
+      - chromadb
+    memory_schema:
+      persona_profile: chromadb
+      content_trace: redis

@@ -1,0 +1,24 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm run build"
+
+[deploy]
+startCommand = "npm run start"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 3
+minInstances = 1
+maxInstances = 3
+
+[deploy.envs]
+NODE_ENV = "production"
+PORT = "3000"
+NEXT_TELEMETRY_DISABLED = "1"
+
+[deploy.healthcheck]
+path = "/"
+initialDelay = 10
+interval = 30
+timeout = 5
+maxRetries = 3 

@@ -1,0 +1,76 @@
+agent_registry:
+  categories:
+    business_logic:
+    - StrategyAgent
+    - PricingAgent
+    - ForecastAgent
+    - RevenueAgent
+    - BillingAgent
+    - LicensingAgent
+    - PartnerAgent
+    core_system:
+    - OpsAgent
+    - InfraAgent
+    - SecAgent
+    - DevAgent
+    - PromptAgent
+    - SchedulerAgent
+    - RunnerAgent
+    - CacheAgent
+    - TelemetryAgent
+    - ConfigAgent
+    domain_specific:
+    - ProviderAgent
+    - GeoRouterAgent
+    - ServiceMapAgent
+    - AvailabilityAgent
+    - QuoteAgent
+    - ReviewAgent
+    - ComplianceAgent
+    - VerificationAgent
+    - ListingAgent
+    - CoverageAgent
+    experimental:
+    - ExperimentAgent
+    - ModelAgent
+    - BehaviorLoopAgent
+    - PersonaForgeAgent
+    - ReplayAgent
+    - PrototypeAgent
+    - ConceptAgent
+    knowledge_content:
+    - ContentAgent
+    - NarrativeAgent
+    - SOPAgent
+    - TrainingAgent
+    - CourseAgent
+    - VoiceAgent
+    - VideoAgent
+    - MemoryCuratorAgent
+    marketing_growth:
+    - CampaignAgent
+    - SEOAgent
+    - InfluenceAgent
+    - ReferralAgent
+    - LeadMagnetAgent
+    - PromoAgent
+    - AnalyticsAgent
+    - AttributionAgent
+    sales_support:
+    - SalesAgent
+    - DemoAgent
+    - CRMBridgeAgent
+    - SupportAgent
+    - EscalationAgent
+    - ChurnAgent
+    - UpsellAgent
+    - SurveyAgent
+    security_governance:
+    - AuditAgent
+    - PolicyAgent
+    - VaultAgent
+    - SentryAgent
+    - FailoverAgent
+    - LifecycleAgent
+    - ComplianceCheckAgent
+    - ErrorHandlerAgent
